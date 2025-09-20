@@ -3,4 +3,4 @@
 * Ransom Note
 
   * [Q](https://leetcode.com/problems/ransom-note/description/)
-  * [Soln](juyomo/hw1/1_ransom_note.cpp)
+  * [Soln](1_ransom_note.cpp)
