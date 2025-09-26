@@ -4,7 +4,7 @@
 // HOCO Mentoring HW 1
 // https://github.com/juyomo/hoco-mentoring
 
- class Solution {
+class Solution {
 public:
     int findMax(int a, int b) {
         return a > b ? a : b;
