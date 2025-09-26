@@ -1,8 +1,6 @@
 // Author: Juyoung Moon
 // https://leetcode.com/problems/ransom-note/
 
-// Solved on Aug 18, 2025.
-
 // HOCO Mentoring HW 1
 // https://github.com/juyomo/hoco-mentoring
 
