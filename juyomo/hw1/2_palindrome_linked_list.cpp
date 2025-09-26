@@ -4,6 +4,8 @@
 // HOCO Mentoring HW 1
 // https://github.com/juyomo/hoco-mentoring
 
+// I was lazy and I only have O(n) space complexity solution here.. :)
+
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
