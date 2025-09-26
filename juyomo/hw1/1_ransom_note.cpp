@@ -1,5 +1,5 @@
 // Author: Juyoung Moon
-// https://leetcode.com/problems/group-anagrams/
+// https://leetcode.com/problems/ransom-note/
 
 // Solved on Aug 18, 2025.
 
