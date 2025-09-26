@@ -4,9 +4,11 @@
 // HOCO Mentoring HW 1
 // https://github.com/juyomo/hoco-mentoring
 
- class Solution {
+// Iterative & recursive solution 둘 다 있습니다! 참고해주세요 :)
+
+class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    ListNode* mergeIteratively(ListNode* list1, ListNode* list2) {
         ListNode* dummy = new ListNode();
         ListNode* curr = dummy;
 
@@ -32,5 +34,23 @@ public:
         delete dummy;
         return curr;
     }
+
+    ListNode* mergeRecursively(ListNode* list1, ListNode* list2) {
+        if (list1 == nullptr) {
+            return list2;
+        } else if (list2 == nullptr) {
+            return list1;
+        } else if (list1->val < list2->val) {
+            list1->next = mergeRecursively(list1->next, list2);
+            return list1;
+        } else {
+            list2->next = mergeRecursively(list1, list2->next);
+            return list2;
+        }
+    }
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        // return mergeIteratively(list1, list2);
+        return mergeRecursively(list1, list2);
+    }
 };
-    
