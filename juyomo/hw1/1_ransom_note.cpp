@@ -1,7 +1,5 @@
 // Author: Juyoung Moon
-// https://leetcode.com/problems/group-anagrams/
-
-// Solved on Aug 18, 2025.
+// https://leetcode.com/problems/ransom-note/
 
 // HOCO Mentoring HW 1
 // https://github.com/juyomo/hoco-mentoring
