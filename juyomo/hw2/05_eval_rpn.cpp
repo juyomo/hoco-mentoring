@@ -5,8 +5,8 @@
 // https://github.com/juyomo/hoco-mentoring
 
 class Solution {
-public:
-    void helper(stack<int>& stk, int& a, int& b) {
+private:
+    void getNums(stack<int>& stk, int& a, int& b) {
         if (stk.size() < 2) {
             return;
         }
@@ -15,22 +15,24 @@ public:
         a = stk.top(); stk.pop();
     }
 
+public:
     int evalRPN(vector<string>& tokens) {
         stack<int> nums;
         int a, b;
+
         for (string s : tokens) {
-            if (s == "*") {
-                helper(nums, a, b);
-                nums.push(a * b);
-            } else if (s == "/") {
-                helper(nums, a, b);
-                nums.push(a / b);
-            } else if (s == "+") {
-                helper(nums, a, b);
+            if (s == "+") {
+                getNums(nums, a, b);
                 nums.push(a + b);
             } else if (s == "-") {
-                helper(nums, a, b);
+                getNums(nums, a, b);
                 nums.push(a - b);
+            } else if (s == "*") {
+                getNums(nums, a, b);
+                nums.push(a * b);
+            } else if (s == "/") {
+                getNums(nums, a, b);
+                nums.push(a / b);
             } else {
                 nums.push(stoi(s));
             }
