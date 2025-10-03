@@ -27,11 +27,13 @@ public:
             idx++;
         }
 
-        if (idx >= 1 && intervals[idx-1][1] > ed) {
-            ed = intervals[idx-1][1];
-        }
+        if (idx >= 1) {
+            ed = max(intervals[idx-1][1], ed);
+        } 
+
         res.push_back({st, ed});
 
+        // after
         while (idx < intervals.size()) {
             res.push_back(intervals[idx]);
             idx++;
