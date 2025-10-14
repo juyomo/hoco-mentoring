@@ -12,7 +12,8 @@ public:
 
         int height = mat.size();
         int width = mat[0].size();
-
+        int kINF = 1000000;
+        
         queue<pair<int, int>> tovisit;
 
         for (int i = 0; i < height; i++) {
@@ -20,7 +21,7 @@ public:
                 if (mat[i][j] == 0) {
                     tovisit.push(make_pair(i, j));
                 } else {
-                    mat[i][j] = 1000000;
+                    mat[i][j] = kINF;
                 }
             }
         }
