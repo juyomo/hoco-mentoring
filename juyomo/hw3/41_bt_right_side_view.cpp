@@ -44,7 +44,6 @@ public:
         int lookFor = 0;
         for (int i = 0; i < elemsAndDepths.size(); i++) {
             TreeNodeContainer ctn = elemsAndDepths[i];
-            cout << ctn.first->val << " " << ctn.second << endl;
             if (ctn.second == lookFor) {
                 res.push_back(ctn.first->val);
                 lookFor++;
