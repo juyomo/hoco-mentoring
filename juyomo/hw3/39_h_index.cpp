@@ -19,12 +19,12 @@ public:
             }
         }
         return 0;
+        
         // want to find largest index i s.t.
         // citations[i] >= i + 1
         // return i + 1
         int start = 0;
         int end = citations.size() - 1;
-
 
         while (start < end) {
             int mid = (start + end) / 2;
@@ -40,6 +40,4 @@ public:
         }
         return start;
     }
-
-
 };
