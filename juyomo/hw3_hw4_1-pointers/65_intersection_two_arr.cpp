@@ -11,17 +11,12 @@ public:
         for (int n : nums1) {
             seen.insert(n);
         }
-        unordered_set<int> common;
+        vector<int> res;
         for (int n : nums2) {
             if (seen.count(n) > 0) {
-                common.insert(n);
+                seen.erase(n);
+                res.push_back(n);
             }
-        }
-        vector<int> res(common.size());
-        int idx = 0;
-        for (int n : common) {
-            res[idx] = n;
-            idx++;
         }
         return res;
     }
