@@ -8,29 +8,25 @@ class Solution {
 public:
     int maxSum(vector<int>& nums) {
         unordered_set<int> s;
-        bool positiveExist = false;
         int largestNeg = -101;
+
         for (int n : nums) {
             if (n > 0) {
-                positiveExist = true;
+                s.insert(n);
             }
             if (n <= 0 && n > largestNeg) {
                 largestNeg = n;
             }
-            s.insert(n);
         }
 
-        if (positiveExist) {
+        if (s.size() > 0) {
             int sum = 0;
             for (int n : s) {
-                if (n > 0) {
-                    sum += n;
-                }
+                sum += n;
             }
             return sum;
         } else {
             return largestNeg;
         }
-
     }
 };
