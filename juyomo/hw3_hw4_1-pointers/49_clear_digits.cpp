@@ -7,7 +7,7 @@
 class Solution {
 public:
     string clearDigits(string s) {
-        vector<char> stk;
+        string stk;
         for (char c : s) {
             if (isdigit(c)) {
                 if (stk.size() > 0) {
@@ -18,10 +18,6 @@ public:
             }
         }
 
-        string res;
-        for (char c : stk) {
-            res += c;
-        }
-        return res;
+        return stk;
     }
 };
