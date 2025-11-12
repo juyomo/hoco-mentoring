@@ -18,6 +18,7 @@ void solve(int n, int src, int dest, int tmp, vector<vector<int>>& soln) {
     soln.push_back({src, dest});
     solve(n-1, tmp, dest, src, soln);
 }
+
 vector<vector<int>> solution(int n) {
     vector<vector<int>> answer;
     
