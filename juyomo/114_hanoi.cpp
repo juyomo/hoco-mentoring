@@ -9,17 +9,18 @@
 
 using namespace std;
 
-void toh(int n, int from, int temp, int to, vector<vector<int>>& answer) {
-    if (n == 0) {
+void solve(int n, int src, int dest, int tmp, vector<vector<int>>& soln) {
+    if (n == 1) {
+        soln.push_back({src, dest});
         return;
     }
-    toh(n - 1, from, to, temp, answer);
-    answer.push_back({from,to});
-    toh(n - 1, temp, from, to , answer);
+    solve(n-1, src, tmp, dest, soln);
+    soln.push_back({src, dest});
+    solve(n-1, tmp, dest, src, soln);
 }
-
 vector<vector<int>> solution(int n) {
     vector<vector<int>> answer;
-    toh(n, 1, 2, 3, answer);
+    
+    solve(n, 1, 3, 2, answer);
     return answer;
 }
