@@ -32,32 +32,26 @@ long long solution(int numberOfPeople, vector<int> durationPerOfficer) {
         }
     }
     
-    long long maxTime = (long long) minOfficer * numberOfPeople;
-    long long minTime = 0;
-    long long mid;
+    long long maxTotalTime = minOfficer * numberOfPeople;
     
-    //
+    long long minTime = 0;
+    long long maxTime = maxTotalTime;
+    long long numToTest;
+    
     while (minTime <= maxTime) {
-        mid = (minTime + maxTime) / 2;
+        numToTest = (minTime + maxTime) / 2;
         
-        bool currentNumOk = possible(durationPerOfficer, numberOfPeople,  mid);
-        bool prevNumOk = possible(durationPerOfficer, numberOfPeople,  mid - 1);
-        
-        if ( currentNumOk && !prevNumOk ) {
-            return mid;
+        bool currentNumOk = possible(durationPerOfficer, numberOfPeople,  numToTest);
+        bool prevNumOk = possible(durationPerOfficer, numberOfPeople,  numToTest-1);
+        if ( currentNumOk && !prevNumOk) {
+            return numToTest;
         } else if (!currentNumOk) {
             // too small!
-            minTime = mid+1;
+            minTime = numToTest+1;
         } else {
             // might be smaller
-            maxTime = mid-1;
+            maxTime = numToTest;
         }
     }
-    
-    /*
-    ll l = 1;
-    ll r = (ll) n * v[v.size()-1];
-    */
-    
     return -1;
 }
