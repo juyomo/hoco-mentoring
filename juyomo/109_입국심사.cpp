@@ -20,11 +20,6 @@ bool possible(const vector<int>& durationPerOfficer, const int numberOfPeople, l
 }
 
 long long solution(int numberOfPeople, vector<int> durationPerOfficer) {
-    // Officers 3  9  1  1  2  8
-    // We want to even it out
-    // Persons  a  b  c  d  e  f = sum is numberOfPeople
-    //         3a 9b  c  d  2e 8f -> we want to minimize the maximum of these
-    
     int minOfficer = durationPerOfficer[0];
     for (int n : durationPerOfficer) {
         if (n < minOfficer) {
@@ -32,26 +27,22 @@ long long solution(int numberOfPeople, vector<int> durationPerOfficer) {
         }
     }
     
-    long long maxTotalTime = minOfficer * numberOfPeople;
+    long long maxTotalTime = (long long)minOfficer * numberOfPeople;
     
     long long minTime = 0;
     long long maxTime = maxTotalTime;
     long long numToTest;
+    long long answer = maxTime; // Initialize with maximum possible time.
     
     while (minTime <= maxTime) {
-        numToTest = (minTime + maxTime) / 2;
+        numToTest = minTime + (maxTime - minTime) / 2; // Prevent overflow
         
-        bool currentNumOk = possible(durationPerOfficer, numberOfPeople,  numToTest);
-        bool prevNumOk = possible(durationPerOfficer, numberOfPeople,  numToTest-1);
-        if ( currentNumOk && !prevNumOk) {
-            return numToTest;
-        } else if (!currentNumOk) {
-            // too small!
-            minTime = numToTest+1;
+        if (possible(durationPerOfficer, numberOfPeople, numToTest)) {
+            answer = numToTest; // Store possible answer.
+            maxTime = numToTest - 1; // Try to find a smaller time.
         } else {
-            // might be smaller
-            maxTime = numToTest;
+            minTime = numToTest + 1; // Time is too small.
         }
     }
-    return -1;
+    return answer;
 }
