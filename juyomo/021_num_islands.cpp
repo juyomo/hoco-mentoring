@@ -1,5 +1,5 @@
 // Author: Juyoung Moon
-// https://leetcode.com/problems/number-of-islands/ (submission #12)
+// https://leetcode.com/problems/number-of-islands/ (submission #7)
 
 // HOCO Mentoring HW
 // https://github.com/juyomo/hoco-mentoring
@@ -8,8 +8,13 @@ class Solution {
 private:
     int drs[4] = {-1,0,1,0};
     int dcs[4] = {0,1,0,-1};
+    struct pair_hash {
+        inline std::size_t operator()(const std::pair<int,int> & v) const {
+            return v.first*31+v.second;
+        }
+    };
     
-    void removeOneIsland(vector<vector<char>>& grid, set<pair<int, int>>& ones) {
+    void removeOneIsland(vector<vector<char>>& grid, unordered_set<pair<int, int>, pair_hash>& ones) {
         // pick any island, mark them as 0 on grid
         // remove those coordinates from ones
         int height = grid.size();
@@ -17,17 +22,16 @@ private:
 
         // pick a random starting point in "ones"
         pair<int, int> currPos;
-
         for (const auto& p : ones) {
             currPos = p;
             break;
         }
 
-        queue<pair<int, int>> tovisit;
+        stack<pair<int, int>> tovisit;
         tovisit.push(currPos);
 
         while (!tovisit.empty()) {
-            currPos = tovisit.front();
+            currPos = tovisit.top();
             tovisit.pop();
             grid[currPos.first][currPos.second] = '0';
             ones.erase(currPos);
@@ -47,7 +51,7 @@ private:
 
 public:
     int numIslands(vector<vector<char>>& grid) {
-        set<pair<int, int>> ones;
+        unordered_set<pair<int, int>, pair_hash> ones;
         for (int i = 0; i < grid.size(); i++) {
             for (int j = 0; j < grid[0].size(); j++) {
                 if (grid[i][j] == '1') {
